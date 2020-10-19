@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>List of ideas!</h1>
+    <p>Current number of ideas : {{ ideas.totalItemCount }}</p>
+    <div>
+        <form method="get">
+            <fieldset>
+                <legend>Filter by category</legend>
+                <div class="category-filter">
+                    {% for category in categories %}
+                        <label for="{{ category.name }}" class="radio">
+                            <input type="radio" name="filter" id="{{ category.name }}" value="{{ category.id }}"/>
+                            {{ category.name }}
+                        </label>
+                    {% endfor %}
+                </div>
+                <div class="submit-button">
+                    <button type="submit">Filter by category</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="ideas-list">
+        {% for idea in ideas %}
+            <a href="{{ path('idea_detail', {'id': idea.id}) }}">
+                <h5>{{ idea.category.name }}</h5>{{ idea.title }}</a>
+        {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(ideas) }}
+    </div>
+{% endblock %}
+
+{% block title %}Latest ideas | {{ parent() }}{% endblock %}

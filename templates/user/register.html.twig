@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>Register!</h1>
+    <div>
+        {{ form_start(registerForm) }}
+
+        {{ form_widget(registerForm) }}
+        <button type="submit" value="Register!">Register!</button>
+
+        {{ form_end(registerForm) }}
+    </div>
+{% endblock %}
+
+{% block title %}Register! | {{ parent() }}{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>My list of ideas!</h1>
+    <p>Current number of ideas on my list : {{ userIdeas.totalItemCount }}</p>
+
+    <div>
+        {% for ui in userIdeas %}
+            <div class="ideas-my-list">
+                <a href="{{ path('idea_detail', {'id': ui.idea.id}) }}">
+                    <h5>{{ ui.idea.category.name }}</h5>{{ ui.idea.title }}
+                </a>
+                <p class="idea-meta">Added to my list on the {{ ui.dateAdded | date('m/d/Y') }}</p>
+                {% if ui.isCompleted %}
+                    <p>&#10004; This idea has been completed!</p>
+                {% else %}
+                    <p>&#10008; This idea hasn't been completed yet!</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(userIdeas) }}
+    </div>
+{% endblock %}
+
+{% block title %}Latest ideas | {{ parent() }}{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <form action="{{ path('idea_delete', { id: idea.id }) }}" method="post">
+            {# the argument of csrf_token() is an arbitrary string used to generate the token #}
+            <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+
+            <button type="submit">Delete this idea</button>
+        </form>
+    {% endif %}
+    {% if is_granted('ROLE_USER') and (userIdea == null) %}
+        <p>
+            <button><a href="{{ path('add_idea_to_my_list', {id: idea.id}) }}">Add this idea to my list</a></button>
+        </p>
+    {% elseif is_granted('ROLE_USER') and (userIdea != null) %}
+        <p>&#10004; This idea is in your list!</p>
+    {% endif %}
+    <h1>{{ idea.title }}</h1>
+    <div class="idea-category">Catégorie : {{ idea.category.name }}</div>
+    <div class="description">{{ idea.description|raw }}</div>
+    <div class="idea-meta">{{ idea.author }} had this idea on the {{ idea.dateCreated|date('m/d/Y') }} at {{ idea.dateCreated|date('H:m') }}</div>
+    <button><a href="{{ path('idea_edit', {'id': idea.id}) }}">Edit this idea</a></button>
+
+    <div class="comments">
+        <h1>Comments</h1>
+        {% if is_granted('ROLE_USER') %}
+                <button><a href="{{ path('add_comment', {'id': idea.id}) }}">Add a comment on this idea</a></button>
+        {% endif %}
+
+        {% for comment in idea.comments %}
+            <div class="comment-list">
+                <p>{{ comment.text | raw }}</p>
+                <p class="comment-meta">{{ comment.author.username }} commented on the {{ comment.dateCreated|date('m/d/Y') }} at {{ comment.dateCreated|date('H:m') }}</p>
+                {% if is_granted('ROLE_ADMIN') or comment.author.username == app.user.username %}
+                    <button><a href="{{ path('delete_comment', {'id': idea.id, 'comment': comment.id}) }}">Delete this comment</a></button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block title %}{{ idea.title }} | {{ parent() }}{% endblock %}

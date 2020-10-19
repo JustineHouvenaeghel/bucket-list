@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    {{ form_start(commentForm) }}
+    {{ form_widget(commentForm) }}
+    <button type="submit">Add your comment</button>
+    {{ form_end(commentForm) }}
+{% endblock %}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Bucket-List{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('media/favicon.png') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a class="site-title" href="{{ path('main_home') }}" title="Bucket-List | Home">
+                <img src="{{ asset('media/logo.png') }}" alt="Bucket-List"> Bucket-List
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('main_home') }}" title="Bucket-List | Home">Home</a></li>
+                    <li><a href="{{ path('idea_list') }}" title="List of ideas">List of ideas</a></li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('idea_add')}}" title="Add an idea">Add an idea</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('main_about_us') }}" title="About us">About us</a></li>
+                </ul>
+
+                <ul>
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="#" disabled>Hello {{ app.user.username }}!</a></li>
+                        <li><a href="{{ path('idea_my_list') }}" title="My ideas">My list</a></li>
+                        <li><a href="{{ path('logout')}}" title="Logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ path('register')}}" title="Register">Register</a></li>
+                        <li><a href="{{ path('login')}}" title="Login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <div class="flashes">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            &copy;Bucket-List {{ "now"|date("Y") }}
+            <br/>
+            By <a href="https://github.com/fabianalexisinostroza/Antu">Fabián Alexis</a> (https://github.com/fabianalexisinostroza/Antu) [<a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>],
+            <a href="https://commons.wikimedia.org/wiki/File%3AAntu_color-fill.svg">via Wikimedia Commons</a>
+        </footer>
+    </div>
+</body>
+</html>

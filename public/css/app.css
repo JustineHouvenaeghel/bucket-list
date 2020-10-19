@@ -1,0 +1,216 @@
+/**
+global styles
+ */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    min-width: 360px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.flashes .flash {
+    padding: 20px;
+    background-color: dodgerblue;
+    color: #FFF;
+    font-size: 24px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.flashes .flash-success {
+    background-color: #718C00;
+}
+
+.flashes .flash-error {
+    background-color: #AA3333;
+}
+
+/**
+header
+ */
+.site-title {
+    display: flex;
+    align-items: center;
+    font-size: 48px;
+}
+
+.site-title img {
+    height: 48px;
+    display: block;
+    margin-right: 5px;
+}
+
+header nav ul {
+    margin: 5px 0;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+header nav a {
+    display: block;
+    padding: 5px 8px;
+    margin-right: 10px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+/**
+main
+ */
+main {
+    padding: 30px 0;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
+}
+
+h1 {
+    margin: 0;
+}
+
+/**
+footer
+ */
+footer {
+    padding: 20px 0;
+    text-align: center;
+}
+
+/**
+list & detail pages
+ */
+.ideas-list a {
+    display: block;
+    border: 1px solid #D3D3D3;
+    padding: 10px 5px;
+    margin: 10px 0;
+}
+
+.idea-meta {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.idea-category {
+    margin-top: 10px;
+}
+
+h5 {
+    margin: 0;
+}
+
+.comments {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #D3D3D3;
+}
+.comment-list {
+    display: block;
+    border: 1px solid #D3D3D3;
+    padding: 10px 5px;
+    margin: 10px 0;
+}
+
+.comment-meta {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.ideas-my-list {
+    display: block;
+    border: 1px solid #D3D3D3;
+    padding: 10px 5px;
+    margin: 10px 0;
+}
+
+/**
+about us
+ */
+.team-list {
+    display: block;
+    border: 1px solid #D3D3D3;
+    padding: 10px 5px;
+    margin: 10px 0;
+}
+
+.team-meta {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+/**
+forms
+ */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+form input, form textarea, form select {
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    min-width: 300px;
+}
+
+form textarea {
+    min-height: 70px;
+}
+
+form button {
+    padding: 5px 10px;
+}
+
+form ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+form ul > li {
+    display: block;
+    font-weight: bold;
+    color: #AA3333;
+}
+
+input[type="radio"] {
+    display: inline;
+    box-sizing: initial;
+    margin-bottom: 0px;
+    min-width: 0px;
+
+}
+
+.category-filter {
+    display: flex;
+    margin: 15px;
+}
+
+.radio {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.submit-button {
+    text-align: center;
+    margin: 15px;
+}
